@@ -1,8 +1,9 @@
 'use server';
 import * as z from 'zod';
 import axios from 'axios';
-
+import {db} from '@/lib/db';
 import { RegisterSchema } from '@/schemas';
+import bcrypt from 'bcryptjs';
 
 export const register = async (values: z.infer<typeof RegisterSchema>) => {
     const validatedValues = RegisterSchema.safeParse(values);
@@ -11,24 +12,23 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
         return {  error: 'Invalid email or password' }
     }
 
-    //ESTE VALOR ES DE PRUEBA PARA PROBAR CON LA API
-    const valuesWithNewField = { ...validatedValues.data, role: 'USER' };
+    const { email, password, name } = validatedValues.data;
 
-    try{
-        const response = await axios.post('https://staynest.icybeach-62331649.eastus.azurecontainerapps.io/user/register', valuesWithNewField);
-        if( response.status === 200){
-            return { success: "Registration successful"}
-        } else if ( response.status === 400) {
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-            return { error: "Email already is registered" }
-            
-        } else{
-            return { error: "Registration failed" }
-        }
-        
-    } catch (error){
-        console.log(error)
-        return { error: "An error occurred while trying to register" }
+    const existingUser = await db.user.findUnique({where: { email}});
+
+    if (existingUser) {
+        return { error: 'User with that email already exists' }
     }
+    await db.user.create({
+        data: {
+            email,
+            password: hashedPassword,
+            name
+        }
+    });
+    
+    return { success: "User created!" }
    
 }

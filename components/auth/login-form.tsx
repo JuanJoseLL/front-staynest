@@ -1,7 +1,8 @@
 'use client'
 import* as z from 'zod';
 
-import { useState, useTransition } from 'react';
+import { useSearchParams } from "next/navigation"
+import { use, useState, useTransition } from 'react';
 import { CardWrapper } from "./card-wrapper"
 import { Button } from '../ui/button';
 import { FormError } from '../form-error';
@@ -22,6 +23,9 @@ import { login } from '@/actions/login';
 
 
 export const LoginForm = () => {
+    const searchParams = useSearchParams()
+    const urlError = searchParams.get('error') === "OAuthAccountNotLinked" 
+        ? "Email already in use with different provider" : ""
 
     const [error, setError] = useState<string | undefined>('')
     const [success, setSuccess] = useState<string | undefined>('')
@@ -42,11 +46,13 @@ export const LoginForm = () => {
         setError('')
         setSuccess('')
 
+        //TODO: preguntar al profe
         startTransition(() => {
             login(values)
-             .then((data: any) => { // Specify the type of 'data' as 'any'
-                 setError(data.error)
-                 setSuccess(data.success)
+             .then((data: any) => { 
+                    setError(data.error)
+                 
+                 //setSuccess(data.success)
              })
         });
         
@@ -108,7 +114,7 @@ export const LoginForm = () => {
                         />
 
                     </div>
-                    <FormError message={error}/>
+                    <FormError message={error || urlError}/>
                     <FormSucceess message={success}/>
                     
                     <Button disabled={isPending} type='submit' className='w-full'>

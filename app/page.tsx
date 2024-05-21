@@ -17,10 +17,10 @@ export default function Home() {
         <h1 className={cn("text-6xl font-semibold text-white drop-shadow-md",
           font.className,
         )}>
-          Auth
+          Staynest
         </h1>
         <p className="text-white text-lg">
-          Get started by signing in with one of the following providers.
+          Juan Jose Lopez, Dylan Bermudez, Sara Cardona
         </p>
         <div>
           <LoginButton>

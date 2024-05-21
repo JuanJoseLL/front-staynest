@@ -3,23 +3,34 @@ import * as z from 'zod';
 
 import { LoginSchema } from '@/schemas';
 import axios from 'axios';
+import { AuthError } from 'next-auth';
+import { signIn} from '@/auth';
+import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
+export const login =  (values: z.infer<typeof LoginSchema>) => {
+        const validatedValues = LoginSchema.safeParse(values);
 
-export const login = async (values: z.infer<typeof LoginSchema>) => {
-    const validatedValues = LoginSchema.safeParse(values);
-
-    if (!validatedValues.success) {
-        return {  error: 'Invalid email or password' }
-    }
-
-    try{
-        const response = await axios.post('https://staynest.icybeach-62331649.eastus.azurecontainerapps.io/auth/login', values);
-        if (response.status === 200){
-            return { success: "Login successful", token: response.data.token}
-        } else{
-            return { error: "Invalid email or password"}
+        if (!validatedValues.success) {
+            return {  error: 'Invalid email or password' }
         }
-    }catch (error){
-        return { error: "An error occurred while trying to login"}
-    }
+
+        const { email, password } = validatedValues.data;
+       try {
+           signIn('credentials', {
+            email,
+            password,
+            redirectTo: DEFAULT_LOGIN_REDIRECT
+        });
+       } catch (error){
+        if (error instanceof AuthError) {
+            switch (error.type){
+                case "CredentialsSignin":
+                    return { error: 'Invalid email or password' }
+                default:
+                    return { error: 'An error occurred' }
+            }
+        }
+
+        throw error;
+       }
 
 }

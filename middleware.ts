@@ -12,32 +12,38 @@ import {
 
 
 const {auth} = NextAuth(authConfig);
+
+
+/**
+ * Middleware to check if a user is authenticated
+ * Aqui usamos routes.ts para verificar si el usuario está autheticado y hacer la redireccion
+ */
 export default auth((req) => {
-    // const { nextUrl } = req
-    // const isLoggedIn = !!req.auth
+    const { nextUrl } = req
+    const isLoggedIn = !!req.auth
 
-    // const isApiAuthRoute = nextUrl.pathname.startsWith (apiAuthPrefix)
-    // const isPublicRoute = publicRoutes.includes(nextUrl.pathname)
-    // const isPrivateRoute = privateRoutes.includes(nextUrl.pathname)
+    const isApiAuthRoute = nextUrl.pathname.startsWith (apiAuthPrefix)
+    const isPublicRoute = publicRoutes.includes(nextUrl.pathname)
+    const isPrivateRoute = privateRoutes.includes(nextUrl.pathname)
 
-    // if (isApiAuthRoute) {
-    //     return null
-    // }
+    if (isApiAuthRoute) {
+        return 
+    }
 
-    // if (isPrivateRoute){
-    //     if (isLoggedIn) {
-    //         return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl))
-    //     }
-    //     return null
-    // }
+    if (isPrivateRoute){
+        if (isLoggedIn) {
+            return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl))
+        }
+        return 
+    }
 
-    // if (!isLoggedIn && !isPublicRoute) {
-    //     return Response.redirect(new URL('/auth/login', nextUrl))
-    // }
+    if (!isLoggedIn && !isPublicRoute) {
+        return Response.redirect(new URL('/auth/login', nextUrl))
+    }
 
-    // return null
+    return 
 })
 
 export const config = {
-    matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
-}
+    matcher: ['/((?!.*\\..*|_next).*)', '/', '/(api|trpc)(.*)'],
+};
