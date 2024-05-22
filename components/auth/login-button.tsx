@@ -3,7 +3,12 @@
 import { useRouter } from 'next/navigation';
 import { use } from 'react';
 
-
+import {
+    Dialog, 
+    DialogContent,
+    DialogTrigger
+} from "@/components/ui/dialog"
+import { LoginForm } from './login-form';
 
 interface LoginButtonProps{
     children: React.ReactNode;
@@ -24,9 +29,14 @@ export const LoginButton = ({
     }
     if (mode === "modal") {
         return (
-            <span>
-                TODO: IMPLEMENT MODAL
-            </span>
+            <Dialog>
+                <DialogTrigger asChild={asChild}>
+                    {children}
+                </DialogTrigger>
+                <DialogContent className='p-0 w-auto bg-transparent border-none'>
+                    <LoginForm />
+                </DialogContent>
+            </Dialog>
         )
     }
 
