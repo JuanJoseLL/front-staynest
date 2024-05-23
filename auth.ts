@@ -1,28 +1,50 @@
 import NextAuth, {DefaultSession} from 'next-auth'
-import { getUserById } from '@/data/user'
 import authConfig from '@/auth.config'
-import { PrismaAdapter } from "@auth/prisma-adapter"
-import { PrismaClient } from "@prisma/client"
 import {db} from '@/lib/db'
-import{JWT} from '@auth/core/jwt'
+import {JWT} from '@auth/core/jwt'
 
 declare module "@auth/core/jwt"{
     interface JWT {
-        role?: "ADMIN" | "USER" | "OWNER";
+        user: {
+            id: string,
+            role: "ADMIN" | "USER" | "OWNER",
+            email: string,
+            name: string,
+            image: string | null,
+            emailVerified: Date | null,
+            password: string | null,
+        },
+        access_token: string
     }
 }
 
+export type User = {
+    id: string,
+    role: "ADMIN" | "USER" | "OWNER",
+    email: string,
+    name: string,
+    image: string | null,
+    emailVerified: Date | null,
+    password: string | null,
 
-
-export type ExtendedUser = DefaultSession['user'] & {
-    role: "ADMIN" | "USER" | "OWNER";
 }
+
 declare module "next-auth"{
     interface Session {
-        user: ExtendedUser
+        user: {
+            id: string,
+            role: "ADMIN" | "USER" | "OWNER",
+            email: string,
+            name: string,
+            image: string | null,
+            emailVerified: Date | null,
+            password: string | null,
+        },
+        access_token: string
     }
 
 }
+
 
 
 
@@ -36,39 +58,26 @@ export const {
         signIn: '/auth/login',
         error: '/auth/error',
     },
-    events:{
-        async linkAccount({user}){
-            await db.user.update({
-                where:{ id: user.id},
-                data: {emailVerified: new Date()}
-            })
-        }
-    },
+   
     callbacks: {
-        async session({session, token}){
+        async session ({session, token}) {
+            //console.log({session, token})
             
-            if (token.sub && session.user){
-                session.user.id = token.sub;
-            }
-
-            if (token.role && session.user){
-                session.user.role = token.role;
-            }
+            session.user = {...token.user};
+            session.access_token = token.user.access_token;
             return session;
-        },
-        async jwt({token}){
-            if (!token.sub) return token
+          },
+          async jwt({ token, user }) {
 
-            const existingUser = await getUserById(token.sub);
-
-            if (!existingUser) return token
-
-            token.role = existingUser.role as ExtendedUser['role'];
-
+            if (user){
+                token.user = {...token.user, ...user};
+                token.access_token = token.access_token
+            } 
             return token;
-        }
+          },
+         
     },
-    adapter: PrismaAdapter(db),
+   
     session: { strategy: 'jwt'},
     ...authConfig,
 })

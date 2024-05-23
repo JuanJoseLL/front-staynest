@@ -1,9 +1,7 @@
 'use server';
 import * as z from 'zod';
 import axios from 'axios';
-import {db} from '@/lib/db';
 import { RegisterSchema } from '@/schemas';
-import bcrypt from 'bcryptjs';
 
 export const register = async (values: z.infer<typeof RegisterSchema>) => {
     const validatedValues = RegisterSchema.safeParse(values);
@@ -12,22 +10,36 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
         return {  error: 'Invalid email or password' }
     }
 
-    const { email, password, name } = validatedValues.data;
+    const { email, password, name,  } = validatedValues.data;
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+   try {
+        const timeStamp = Date.now().toString(); // Declare the timeStamp variable
 
-    const existingUser = await db.user.findUnique({where: { email}});
-
-    if (existingUser) {
-        return { error: 'User with that email already exists' }
-    }
-    await db.user.create({
-        data: {
+        const response = await axios.post('http://localhost:3001/user/register',{
             email,
-            password: hashedPassword,
-            name
+            password,
+            name,
+            "role": "USER",
+            "emailVerified": timeStamp,
+            "image": ""
+        })
+
+        if (response.status === 201) {
+            return { success: 'User created!' };
+        } else {
+            return { error: 'Failed to create user' };
         }
-    });
+
+   }catch(error){
+    if (axios.isAxiosError(error)) {
+        // Handle Axios-specific error
+        return { error: error.response?.data?.message || 'Failed to create user' };
+    } else {
+        // Handle other types of errors
+        return { error: 'An unexpected error occurred' };
+    }
+   }
+   
     
     return { success: "User created!" }
    

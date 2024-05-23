@@ -1,12 +1,17 @@
-import { ExtendedUser } from "@/auth";
+import { User } from "@/auth";
 import { Card, CardContent, CardHeader } from "./ui/card";
-
+import { Button } from "./ui/button";
+import axios from "axios";
 interface UseerInfoProps {
-    user?: ExtendedUser;
+    user?: User | null;
     label: string;
+    access_token?: string | null;
 }
 
-export const UserInfo = ({ user, label }: UseerInfoProps) => {
+export const UserInfo = ({ user, label, access_token }: UseerInfoProps) => {
+
+    
+
     return (
         <Card className="w-[600px] shadow-md">
             <CardHeader>
@@ -21,7 +26,9 @@ export const UserInfo = ({ user, label }: UseerInfoProps) => {
                         </p>
                         <p className="truncate text-xs max-w-[180px] font-mono p-1 bg-slate-100 rounded-md">
                             {user?.id}
+                            
                         </p>
+
                         
                 </div>
                 <div className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
@@ -50,9 +57,18 @@ export const UserInfo = ({ user, label }: UseerInfoProps) => {
                             {user?.role}
                         </p>
                 </div>
+                <div className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
+                        <p className="text-sm font-medium">
+                            Access Token
+                        </p>
+                        <p className="truncate text-xs max-w-[180px] font-mono p-1 bg-slate-100 rounded-md">
+                            {access_token}
+                        </p>
+                </div>
                 
             </CardContent>
         </Card>
+
     );
 }
 
