@@ -15,9 +15,6 @@ const ClientPage = () => {
         return <div>Loading...</div>;  // Display a loading indicator or placeholder
     }
 
-    if (!user || !token) {
-        return <div>Loading user data...</div>; // Display a loading indicator or placeholder
-      }
 
     return (
         
