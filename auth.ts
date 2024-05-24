@@ -1,7 +1,7 @@
 import NextAuth, {DefaultSession} from 'next-auth'
 import authConfig from '@/auth.config'
-import {db} from '@/lib/db'
 import {JWT} from '@auth/core/jwt'
+import { getToken } from 'next-auth/jwt'
 
 declare module "@auth/core/jwt"{
     interface JWT {
@@ -61,10 +61,11 @@ export const {
    
     callbacks: {
         async session ({session, token}) {
-            //console.log({session, token})
+            console.log({session, token})
             
             session.user = {...token.user};
             session.access_token = token.user.access_token;
+            
             return session;
           },
           async jwt({ token, user }) {
