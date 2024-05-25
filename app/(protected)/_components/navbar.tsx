@@ -4,11 +4,12 @@ import Link from "next/link";
 import { Button } from "@/components//ui/button"
 import { usePathname } from "next/navigation";
 import { UserButton } from "@/components/auth/user-button";
-
+import { useCurrentUser } from "@/hooks/use-current-user";
+import { useCurrentRole } from "@/hooks/use-current-role";
+import { NavRoleGate } from "./nav-role-gate";
 export const Navbar = () => {
     const pathname = usePathname()
-
-
+    const role = useCurrentRole()
     return (
         /**
          * La navbar la puse así mientras tanto, pero se puede ajustar la altura y la anchura
@@ -45,13 +46,20 @@ export const Navbar = () => {
                     <Link href="/settings">Settings</Link>
 
                 </Button>
-                <Button
-                 asChild
-                 variant={pathname === "/users" ? "default" : "outline"}
-                >
-                    <Link href="/users">Users</Link>
-
-                </Button>
+                <NavRoleGate allowedRole="ADMIN">
+                    <Button
+                        asChild
+                        variant={pathname === "/users" ? "default" : "outline"}
+                        >
+                        <Link href="/users">Users</Link>
+        
+                    </Button>
+                </NavRoleGate>
+                
+                        
+                    
+                
+               
             </div>
             <UserButton/>
         </nav>

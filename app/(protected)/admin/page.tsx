@@ -28,27 +28,27 @@ const AdminPage = () => {
                 <CardContent className="space-y-4">
                     <RoleGate allowedRole="ADMIN">
                         <FormSucceess message="You are allowed to see this content"/>
-                        
+                                <div className="flex flex-row items-center justify-between
+                                rounded-lg border p-3 shadow-md">
+                                    <p className="text-sm font-medium">
+                                        Admin-Only API ROUTE
+                                    </p>
+                                    <Button onClick={onApiRouteClick}>
+                                    Click to test
+                                    </Button>
+                                </div>
+                            
+                            <div className="flex flex-row items-center justify-between
+                            rounded-lg border p-3 shadow-md">
+                                <p className="text-sm font-medium">
+                                    Admin-Only SERVER ACTION
+                                </p>
+                                <Button>
+                                Click to test
+                                </Button>
+                            </div>
                     </RoleGate>
-                    <div className="flex flex-row items-center justify-between
-                    rounded-lg border p-3 shadow-md">
-                        <p className="text-sm font-medium">
-                            Admin-Only API ROUTE
-                        </p>
-                        <Button onClick={onApiRouteClick}>
-                        Click to test
-                        </Button>
-                    </div>
                     
-                    <div className="flex flex-row items-center justify-between
-                    rounded-lg border p-3 shadow-md">
-                        <p className="text-sm font-medium">
-                            Admin-Only SERVER ACTION
-                        </p>
-                        <Button>
-                        Click to test
-                         </Button>
-                    </div>
                     
                 </CardContent>
         </Card>

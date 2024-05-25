@@ -18,10 +18,12 @@ interface UserProps {
     role: string;
 
 }
+
 interface UserListProps {
     users: UserProps[];
-  }
-export const UserList: React.FC<UserListProps> = ({users}) => {
+}
+
+export const UserList = ({users}: UserListProps ) => {
 
     return (
         <Card className="w-[800px] shadow-md">
