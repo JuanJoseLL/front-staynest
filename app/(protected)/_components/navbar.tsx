@@ -10,8 +10,12 @@ export const Navbar = () => {
 
 
     return (
+        /**
+         * La navbar la puse así mientras tanto, pero se puede ajustar la altura y la anchura
+         * con top-? o w-? en el className del nav
+         */
         <nav className="bg-secondary flex justify-between
-         items-center rounded-xl p-4 w-[600px] shadow-sm">
+         items-center rounded-xl p-4 w-[1000px] shadow-sm mt-0 absolute top-10">
             <div className="flex gap-x-2">
                 <Button
                  asChild
