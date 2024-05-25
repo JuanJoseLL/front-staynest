@@ -61,7 +61,7 @@ export const {
    
     callbacks: {
         async session ({session, token}) {
-            console.log({session, token})
+            //console.log({session, token})
             
             session.user = {...token.user};
             session.access_token = token.user.access_token;
