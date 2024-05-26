@@ -10,6 +10,7 @@ import {
     TableRow,
   } from "@/components/ui/table"
 import { Card, CardContent, CardHeader } from '../ui/card';
+import Link from 'next/link';
 
 interface UserProps {
     id: string;
@@ -37,7 +38,7 @@ export const UserList = ({users}: UserListProps ) => {
                     <TableCaption>Registered Users</TableCaption>
                     <TableHeader>
                         <TableRow>
-                            <TableHead className="truncate text-xs max-w-[180px] font-mono p-1 bg-slate-100 rounded-md">ID</TableHead>
+                            <TableHead className="trucate text-xs max-w-[180px] font-mono p-1 bg-slate-100 rounded-md">ID</TableHead>
                             <TableHead className='truncate text-xs max-w-[180px] font-mono p-1 bg-slate-100 rounded-md'>Name</TableHead>
                             <TableHead className='truncate text-xs max-w-[180px] font-mono p-1 bg-slate-100 rounded-md'>Email</TableHead>
                             <TableHead className="text-right truncate text-xs max-w-[180px] font-mono p-1 bg-slate-100 rounded-md">Role</TableHead>
@@ -45,12 +46,16 @@ export const UserList = ({users}: UserListProps ) => {
                     </TableHeader>
                     <TableBody>
                         {users.map((user)=>(
-                            <TableRow key={user.id}>
-                                <TableCell className="truncate text-xs max-w-[180px] font-mono p-1 bg-slate-100 rounded-md">{user.id}</TableCell>
-                                <TableCell className='truncate text-xs max-w-[180px] font-mono p-1 bg-slate-100 rounded-md'>{user.name}</TableCell>
-                                <TableCell className='truncate text-xs max-w-[180px] font-mono p-1 bg-slate-100 rounded-md'>{user.email}</TableCell>
-                                <TableCell className="text-right truncate text-xs max-w-[180px] font-mono p-1 bg-slate-100 rounded-md">{user.role}</TableCell>
-                            </TableRow>
+                            
+                                    <TableRow key={user.id}>
+                                         <Link href={`/users/${user.id}`} key={user.id} className=''>   
+                                            <TableCell className="truncate text-xs max-w-[180px] font-mono p-1 bg-slate-100 rounded-md">{user.id}</TableCell>
+                                        </Link>
+                                        <TableCell className='truncate text-xs max-w-[180px] font-mono p-1 bg-slate-100 rounded-md'>{user.name}</TableCell>
+                                        <TableCell className='truncate text-xs max-w-[180px] font-mono p-1 bg-slate-100 rounded-md'>{user.email}</TableCell>
+                                        <TableCell className="text-right truncate text-xs max-w-[180px] font-mono p-1 bg-slate-100 rounded-md">{user.role}</TableCell>
+                                    </TableRow> 
+                            
                         ))}
                         
                     </TableBody>

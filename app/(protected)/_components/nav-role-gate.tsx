@@ -1,5 +1,4 @@
 'use client'
-
 import { useCurrentRole } from "@/hooks/use-current-role";
 
 interface RoleGateProps {
