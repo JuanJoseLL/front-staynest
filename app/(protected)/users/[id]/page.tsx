@@ -11,7 +11,7 @@ import { useCurrentToken } from "@/lib/auth";
 const ClientPage = async ({params}: {params : {id : string }}) => {
     const token = await useCurrentToken();
     const user = await getUserById(params.id, token as string);
-    console.log(user, "aqui estoy ")
+   // console.log(user, "aqui estoy ")
     
 
     return (

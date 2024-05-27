@@ -1,5 +1,8 @@
 import { User } from "@/auth";
 import { Card, CardContent, CardHeader } from "./ui/card";
+import { useEffect, useState } from "react";
+import { useCurrentUser } from "@/hooks/use-current-user";
+import { currentUser } from "@/lib/auth";
 
 interface UseerInfoProps {
     user?: User | null;
@@ -9,7 +12,6 @@ interface UseerInfoProps {
 
 export const UserInfo =  ({ user, label, access_token }: UseerInfoProps) => {
    
-
     
 
     return (

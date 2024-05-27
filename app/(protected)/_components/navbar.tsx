@@ -55,7 +55,13 @@ export const Navbar = () => {
         
                     </Button>
                 </NavRoleGate>
-                
+                <Button
+                 asChild
+                 variant={pathname === "/properties" ? "default" : "outline"}
+                >
+                    <Link href="/properties">Properties</Link>
+
+                </Button>
                         
                     
                 
