@@ -2,8 +2,9 @@ import Credentials from "next-auth/providers/credentials"
 import {LoginSchema } from '@/schemas';
 import type { NextAuthConfig } from "next-auth"
 import axios from 'axios';
-import GitHub from "next-auth/providers/github"
-import Google from "next-auth/providers/google"
+
+import GitHubProvider from "next-auth/providers/github"
+import GoogleProvider from "next-auth/providers/google"
 import { profile } from "console";
 
 
@@ -13,8 +14,9 @@ import { profile } from "console";
 
 export default { 
     providers: [
-        GitHub,
-        Google,
+
+        GitHubProvider,
+        GoogleProvider,
         Credentials({
             async authorize(credentials) {
                 const validatedValues = LoginSchema.safeParse(credentials);

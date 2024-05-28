@@ -49,11 +49,7 @@ export const LoginForm = () => {
         //TODO: preguntar al profe
         startTransition(() => {
             login(values)
-             .then((data: any) => { 
-                    setError(data.error)
-                 
-                   //setSuccess(data.success)
-             })
+             
         });
         
     }

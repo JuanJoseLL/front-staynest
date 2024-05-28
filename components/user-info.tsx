@@ -1,15 +1,17 @@
 import { User } from "@/auth";
 import { Card, CardContent, CardHeader } from "./ui/card";
-import { Button } from "./ui/button";
-import axios from "axios";
+import { useEffect, useState } from "react";
+import { useCurrentUser } from "@/hooks/use-current-user";
+import { currentUser } from "@/lib/auth";
+
 interface UseerInfoProps {
     user?: User | null;
     label: string;
     access_token?: string | null;
 }
 
-export const UserInfo = ({ user, label, access_token }: UseerInfoProps) => {
-
+export const UserInfo =  ({ user, label, access_token }: UseerInfoProps) => {
+   
     
 
     return (
@@ -29,7 +31,6 @@ export const UserInfo = ({ user, label, access_token }: UseerInfoProps) => {
                             
                         </p>
 
-                        
                 </div>
                 <div className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
                         <p className="text-sm font-medium">
@@ -49,14 +50,16 @@ export const UserInfo = ({ user, label, access_token }: UseerInfoProps) => {
                         </p>
                         
                 </div>
-                <div className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
+               
+                    <div className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
                         <p className="text-sm font-medium">
                             Role
                         </p>
                         <p className="truncate text-xs max-w-[180px] font-mono p-1 bg-slate-100 rounded-md">
                             {user?.role}
                         </p>
-                </div>
+                    </div>
+                
                 <div className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
                         <p className="text-sm font-medium">
                             Access Token

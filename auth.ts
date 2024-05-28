@@ -1,11 +1,12 @@
 import NextAuth, {DefaultSession} from 'next-auth'
 import authConfig from '@/auth.config'
-import {db} from '@/lib/db'
 import {JWT} from '@auth/core/jwt'
+import { getToken } from 'next-auth/jwt'
 
 declare module "@auth/core/jwt"{
     interface JWT {
         user: {
+            access_token: string,
             id: string,
             role: "ADMIN" | "USER" | "OWNER",
             email: string,
@@ -65,16 +66,21 @@ export const {
             
             session.user = {...token.user};
             session.access_token = token.user.access_token;
+            
             return session;
           },
-          async jwt({ token, user }) {
-
-            if (user){
-                token.user = {...token.user, ...user};
-                token.access_token = token.access_token
-            } 
+        async jwt({ token, user }) {
+            if (user) {
+                token.user = {
+                    ...token.user,
+                    ...user,
+                    name: user.name ?? '', // Ensure name is always a string
+                    email: user.email ?? '', // Ensure email is always a string
+                };
+                token.access_token = token.access_token;
+            }
             return token;
-          },
+        },
          
     },
    
