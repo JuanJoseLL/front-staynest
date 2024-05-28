@@ -47,8 +47,13 @@ export const LoginForm = () => {
         setSuccess('')
 
         //TODO: preguntar al profe
-        startTransition(() => {
-            login(values)
+        startTransition(async () => {
+           const loginError:any = await login(values)
+              if ('error' in loginError) {
+                setError(loginError.error)
+              } else {
+                setSuccess(loginError.success)
+              }
              
         });
         

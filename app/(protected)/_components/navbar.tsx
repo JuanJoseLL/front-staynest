@@ -7,9 +7,36 @@ import { UserButton } from "@/components/auth/user-button";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { useCurrentRole } from "@/hooks/use-current-role";
 import { NavRoleGate } from "./nav-role-gate";
+import { useEffect, useState } from "react";
+
+import {useRouter} from 'next/navigation'
 export const Navbar = () => {
     const pathname = usePathname()
     const role = useCurrentRole()
+    const router = useRouter()
+
+    useEffect (()=>{
+        if (role === undefined){
+            //window.location.reload()
+        }
+        
+        console.log(role)
+
+    },[])
+    
+    
+
+    // const [actualRole, setActualRole] = useState(role)    
+
+    // useEffect (()=>{
+     
+        
+    //     setActualRole(role)
+    //     console.log(actualRole)
+        
+    
+    // },[role])
+
     return (
         /**
          * La navbar la puse así mientras tanto, pero se puede ajustar la altura y la anchura
