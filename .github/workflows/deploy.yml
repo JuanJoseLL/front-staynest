@@ -5,8 +5,8 @@ name: Build and deploy Node.js app  - staynest
 
 on:
   push:
-    branches:
-      - juanjo
+    branches: ["main"]
+      
   workflow_dispatch:
 
 jobs:
