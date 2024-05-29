@@ -2,7 +2,8 @@ import { User } from "@/auth";
 import { Card, CardContent, CardHeader } from "./ui/card";
 import { useEffect, useState } from "react";
 import { useCurrentUser } from "@/hooks/use-current-user";
-import { currentUser } from "@/lib/auth";
+import { currentUser, useCurrentToken } from "@/lib/auth";
+import { UserRoleUpdater } from "./user/user-role-update";
 
 interface UseerInfoProps {
     user?: User | null;
@@ -10,8 +11,8 @@ interface UseerInfoProps {
     access_token?: string | null;
 }
 
-export const UserInfo =  ({ user, label, access_token }: UseerInfoProps) => {
-   
+export const UserInfo =  async ({ user, label, access_token }: UseerInfoProps) => {
+    const token = await useCurrentToken();
     
 
     return (
@@ -55,9 +56,7 @@ export const UserInfo =  ({ user, label, access_token }: UseerInfoProps) => {
                         <p className="text-sm font-medium">
                             Role
                         </p>
-                        <p className="truncate text-xs max-w-[180px] font-mono p-1 bg-slate-100 rounded-md">
-                            {user?.role}
-                        </p>
+                        <UserRoleUpdater user={user} access_token={token}/>
                     </div>
                 
                 <div className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">

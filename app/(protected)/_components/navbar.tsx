@@ -52,13 +52,7 @@ export const Navbar = () => {
                     <Link href="/server">server</Link>
 
                 </Button>
-                <Button
-                 asChild
-                 variant={pathname === "/client" ? "default" : "outline"}
-                >
-                    <Link href="/client">Client</Link>
-
-                </Button>
+                
                 <Button
                  asChild
                  variant={pathname === "/admin" ? "default" : "outline"}
@@ -73,15 +67,7 @@ export const Navbar = () => {
                     <Link href="/settings">Settings</Link>
 
                 </Button>
-                <NavRoleGate allowedRole="ADMIN">
-                    <Button
-                        asChild
-                        variant={pathname === "/users" ? "default" : "outline"}
-                        >
-                        <Link href="/users">Users</Link>
-        
-                    </Button>
-                </NavRoleGate>
+               
                 <Button
                  asChild
                  variant={pathname === "/properties" ? "default" : "outline"}
@@ -94,6 +80,15 @@ export const Navbar = () => {
                 
                
             </div>
+            <NavRoleGate allowedRole="ADMIN">
+                    <Button
+                        asChild
+                        variant={pathname === "/users" ? "default" : "outline"}
+                        >
+                        <Link href="/users">Users</Link>
+        
+                    </Button>
+            </NavRoleGate>
             <UserButton/>
         </nav>
     )
