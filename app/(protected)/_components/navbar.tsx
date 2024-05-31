@@ -26,17 +26,8 @@ export const Navbar = () => {
     
     
 
-    // const [actualRole, setActualRole] = useState(role)    
-
-    // useEffect (()=>{
-     
-        
-    //     setActualRole(role)
-    //     console.log(actualRole)
-        
+   
     
-    // },[role])
-
     return (
         /**
          * La navbar la puse así mientras tanto, pero se puede ajustar la altura y la anchura
@@ -45,13 +36,6 @@ export const Navbar = () => {
         <nav className="bg-secondary flex justify-between
          items-center rounded-xl p-4 w-[1000px] shadow-sm mt-0 absolute top-10">
             <div className="flex gap-x-2">
-                <Button
-                 asChild
-                 variant={pathname === "/server" ? "default" : "outline"}
-                >
-                    <Link href="/server">server</Link>
-
-                </Button>
                 
                 <Button
                  asChild
