@@ -1,5 +1,6 @@
-'use client'
+
 import { useCurrentRole } from "@/hooks/use-current-role";
+import { useEffect } from "react";
 
 interface RoleGateProps {
     allowedRole: "ADMIN" | "USER" | "OWNER";
@@ -8,7 +9,9 @@ interface RoleGateProps {
 
 
 export const NavRoleGate = ({ allowedRole, children }: RoleGateProps) => {
-    const role = useCurrentRole()
+    const role =  useCurrentRole()
+   
+    
 
     if (role !== allowedRole){
         return (

@@ -1,7 +1,7 @@
 'use client'
 
 import {FaUser} from 'react-icons/fa';
-import { ExitIcon } from '@radix-ui/react-icons'; 
+import { ExitIcon, ReaderIcon, InfoCircledIcon } from '@radix-ui/react-icons'; 
 import {
     DropdownMenu,
     DropdownMenuItem,
@@ -16,6 +16,8 @@ import {
 } from '@/components/ui/avatar'
 import { useCurrentUser } from '@/hooks/use-current-user';
 import { LogoutButton } from './logout-button';
+import Link from 'next/link';
+import { NavRoleGate } from '@/app/(protected)/_components/nav-role-gate';
 
 
 
@@ -34,6 +36,23 @@ export const UserButton = () => {
                 </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent className='w-40' align='end'>
+                <NavRoleGate allowedRole='ADMIN'>
+                    <DropdownMenuItem>
+                            <Link href="/analytics" className='flex items-center'>
+                                <ReaderIcon className='h-4 w-4 mr-2'/>
+                                Analytics
+                            </Link>
+                    </DropdownMenuItem>
+                </NavRoleGate>
+                <NavRoleGate allowedRole='ADMIN'>
+                    <DropdownMenuItem>
+                            <Link href="/analytics" className='flex items-center'>
+                                <InfoCircledIcon className='h-4 w-4 mr-2'/>
+                                My Properties
+                            </Link>
+                    </DropdownMenuItem>
+                </NavRoleGate>
+                
                 <LogoutButton>
                     <DropdownMenuItem>
                         <ExitIcon className='h-4 w-4 mr-2'/>

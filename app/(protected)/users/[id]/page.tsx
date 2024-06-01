@@ -17,7 +17,7 @@ const ClientPage = async ({params}: {params : {id : string }}) => {
     return (
         <RoleGate allowedRole="ADMIN">
                 <UserInfo
-                label="Client Component"
+                label={user.name}
                 user={user}
                 access_token={"access_token"}
             />

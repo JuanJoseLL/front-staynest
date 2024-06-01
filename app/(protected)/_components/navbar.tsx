@@ -7,9 +7,27 @@ import { UserButton } from "@/components/auth/user-button";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { useCurrentRole } from "@/hooks/use-current-role";
 import { NavRoleGate } from "./nav-role-gate";
+import { useEffect, useState } from "react";
+
+import {useRouter} from 'next/navigation'
 export const Navbar = () => {
     const pathname = usePathname()
     const role = useCurrentRole()
+    const router = useRouter()
+
+    useEffect (()=>{
+        if (role === undefined){
+            //window.location.reload()
+        }
+        
+        console.log(role)
+
+    },[])
+    
+    
+
+   
+    
     return (
         /**
          * La navbar la puse así mientras tanto, pero se puede ajustar la altura y la anchura
@@ -18,20 +36,7 @@ export const Navbar = () => {
         <nav className="bg-secondary flex justify-between
          items-center rounded-xl p-4 w-[1000px] shadow-sm mt-0 absolute top-10">
             <div className="flex gap-x-2">
-                <Button
-                 asChild
-                 variant={pathname === "/server" ? "default" : "outline"}
-                >
-                    <Link href="/server">server</Link>
-
-                </Button>
-                <Button
-                 asChild
-                 variant={pathname === "/client" ? "default" : "outline"}
-                >
-                    <Link href="/client">Client</Link>
-
-                </Button>
+                
                 <Button
                  asChild
                  variant={pathname === "/admin" ? "default" : "outline"}
@@ -46,15 +51,7 @@ export const Navbar = () => {
                     <Link href="/settings">Settings</Link>
 
                 </Button>
-                <NavRoleGate allowedRole="ADMIN">
-                    <Button
-                        asChild
-                        variant={pathname === "/users" ? "default" : "outline"}
-                        >
-                        <Link href="/users">Users</Link>
-        
-                    </Button>
-                </NavRoleGate>
+               
                 <Button
                  asChild
                  variant={pathname === "/properties" ? "default" : "outline"}
@@ -67,7 +64,19 @@ export const Navbar = () => {
                 
                
             </div>
-            <UserButton/>
+            <div className="flex items-center gap-x-2">
+                <NavRoleGate allowedRole="ADMIN">
+                        <Button
+                            asChild
+                            variant={pathname === "/users" ? "default" : "outline"}
+                            >
+                            <Link href="/users">Users</Link>
+            
+                        </Button>
+                </NavRoleGate>
+                <UserButton/>
+            </div>
+            
         </nav>
     )
 }
