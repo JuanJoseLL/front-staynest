@@ -17,6 +17,7 @@ import {
 import { useCurrentUser } from '@/hooks/use-current-user';
 import { LogoutButton } from './logout-button';
 import Link from 'next/link';
+import { NavRoleGate } from '@/app/(protected)/_components/nav-role-gate';
 
 
 
@@ -35,18 +36,21 @@ export const UserButton = () => {
                 </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent className='w-40' align='end'>
+                <NavRoleGate allowedRole='ADMIN'>
+                    <DropdownMenuItem>
+                            <Link href="/analytics" className='flex items-center'>
+                                <ReaderIcon className='h-4 w-4 mr-2'/>
+                                Analytics
+                            </Link>
+                    </DropdownMenuItem>
+                </NavRoleGate>
+                
                 <LogoutButton>
                     <DropdownMenuItem>
                         <ExitIcon className='h-4 w-4 mr-2'/>
                         Logout
                     </DropdownMenuItem>
                 </LogoutButton>
-                <DropdownMenuItem>
-                        <Link href="/analytics" className='flex items-center'>
-                            <ReaderIcon className='h-4 w-4 mr-2'/>
-                            Analytics
-                        </Link>
-                </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
     );
