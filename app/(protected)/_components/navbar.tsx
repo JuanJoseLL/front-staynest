@@ -64,16 +64,19 @@ export const Navbar = () => {
                 
                
             </div>
-            <NavRoleGate allowedRole="ADMIN">
-                    <Button
-                        asChild
-                        variant={pathname === "/users" ? "default" : "outline"}
-                        >
-                        <Link href="/users">Users</Link>
-        
-                    </Button>
-            </NavRoleGate>
-            <UserButton/>
+            <div className="flex items-center gap-x-2">
+                <NavRoleGate allowedRole="ADMIN">
+                        <Button
+                            asChild
+                            variant={pathname === "/users" ? "default" : "outline"}
+                            >
+                            <Link href="/users">Users</Link>
+            
+                        </Button>
+                </NavRoleGate>
+                <UserButton/>
+            </div>
+            
         </nav>
     )
 }

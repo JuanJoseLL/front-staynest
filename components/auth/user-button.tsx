@@ -1,7 +1,7 @@
 'use client'
 
 import {FaUser} from 'react-icons/fa';
-import { ExitIcon, ReaderIcon } from '@radix-ui/react-icons'; 
+import { ExitIcon, ReaderIcon, InfoCircledIcon } from '@radix-ui/react-icons'; 
 import {
     DropdownMenu,
     DropdownMenuItem,
@@ -41,6 +41,14 @@ export const UserButton = () => {
                             <Link href="/analytics" className='flex items-center'>
                                 <ReaderIcon className='h-4 w-4 mr-2'/>
                                 Analytics
+                            </Link>
+                    </DropdownMenuItem>
+                </NavRoleGate>
+                <NavRoleGate allowedRole='ADMIN'>
+                    <DropdownMenuItem>
+                            <Link href="/analytics" className='flex items-center'>
+                                <InfoCircledIcon className='h-4 w-4 mr-2'/>
+                                My Properties
                             </Link>
                     </DropdownMenuItem>
                 </NavRoleGate>
