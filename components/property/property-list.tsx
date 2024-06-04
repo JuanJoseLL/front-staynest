@@ -8,6 +8,7 @@ interface PropertyProps {
     cost_per_night: number
     city: string
     country: string
+    image:string
 }
 
 
@@ -28,7 +29,8 @@ export const PropertyList = ({ properties }: { properties: PropertyProps[] }) =>
                         {properties.map((property) =>( 
                             <div key={property.id}className="group relative">
                                     <div className="aspect-h-1 aspect-w-1 w-full rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80 ">
-                                        <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Front of men&#039;s Basic Tee in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
+                                        <img src={property.image} alt="Front of men&#039;s Basic Tee in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
+                                        
                                     </div>
                                     <div className="mt-4 flex justify-between">
                                         <div>
