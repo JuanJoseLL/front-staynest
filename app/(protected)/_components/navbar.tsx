@@ -60,7 +60,13 @@ export const Navbar = () => {
 
                 </Button>
                         
-                    
+                <Button
+                 asChild
+                 variant={pathname === "/bookings" ? "default" : "outline"}
+                >
+                    <Link href="/bookings">Bookings</Link>
+
+                </Button>    
                 
                
             </div>
