@@ -43,16 +43,22 @@ export const BookingForm = () => {
     const onSubmit = (values: z.infer<typeof BookingSchema>) => {
         setError('')
         setSuccess('')
-
+    
+        // Create FormData from the form values
+        const formData = new FormData();
+        (Object.keys(values) as Array<keyof typeof values>).forEach(key => {
+            formData.append(key, values[key] as string | Blob);
+        });
+    
         startTransition(() => {
-            createBooking(values)
+            createBooking(formData)
                 .then((data: any) => {
                     setError(data.error)
                     setSuccess(data.success)
                 })
         });
     }
-
+    
     return (
         <CardWrapper
         headerLabel="Create an booking"
@@ -65,7 +71,7 @@ export const BookingForm = () => {
                     <div className='space-y-4'>
                         <FormField
                          control={form.control}
-                          name='Check in'
+                          name='check_in'
                           render={({field}) => (
                             <FormItem>
                                 <FormLabel>
@@ -173,11 +179,57 @@ export const BookingForm = () => {
                             </FormItem>
                           )}
                         />
+                         <FormField
+                         control={form.control}
+                          name='num_people'
+                          render={({field}) => (
+                            <FormItem>
+                                <FormLabel>
+                                    Number of people
+                                </FormLabel>
+                                <FormControl>
+                                    <Input
+                                     {...field}
+                                     disabled={isPending}
+                                     placeholder='num_people'
+                                     />
+                                    
+                                </FormControl>
+                                <FormMessage/>
+
+                                
+                            </FormItem>
+                          )}
+                        />
+
+                        <FormField
+                         control={form.control}
+                          name='payment_method'
+                          render={({field}) => (
+                            <FormItem>
+                                <FormLabel>
+                                    Payment method
+                                </FormLabel>
+                                <FormControl>
+                                    <Input
+                                     {...field}
+                                     disabled={isPending}
+                                     placeholder='Payment method'
+                                     />
+                                    
+                                </FormControl>
+                                <FormMessage/>
+
+                                
+                            </FormItem>
+                          )}
+                        />
+
+                       
+                        
 
 
                     </div>
-                    <FormError message={error}/>
-                    <FormSucceess message={success}/>
                     
                     <Button disabled={isPending} type='submit' className='w-full'>
                         Create an account
