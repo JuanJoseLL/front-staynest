@@ -1,20 +1,31 @@
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { currentUser } from "@/lib/auth";
+import axios from 'axios';
 interface User {
     id: string;
     name: string;
     email: string;
     role: string;
 }
-export async function createBooking(formData: FormData) {
-    const user:User|undefined = await currentUser();
-    try {
-        const response = await fetch(`https://staynest.icybeach-62331649.eastus.azurecontainerapps.io/booking/${user?.id}`, {
-            method: 'POST',
-            body: formData,
-        });
+interface Booking {
+    id: string;
+    userId: string;
+    roomId: string;
+    checkIn: string;
+    checkOut: string;
+    guests: number;
+    price: number;
 
-        if (!response.ok) {
+}
+export async function createBooking(formData: Booking) {
+    const user: User|undefined = await currentUser();
+    console.log( "aqui estoy creando booking")
+    try {
+        const response = await axios.post('http://localhost:3001/booking', {
+            formData
+        })
+
+        if (response.status !== 201) {
             throw new Error('Error creating booking');
         }
 

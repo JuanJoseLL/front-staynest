@@ -1,4 +1,7 @@
 'use client'
+
+
+import Link from 'next/link';
 import { Card, CardContent, CardHeader } from '../ui/card';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
@@ -42,12 +45,15 @@ export const PropertyList = ({ properties }: { properties: PropertyProps[] }) =>
                                     <div className="mt-4 flex justify-between">
                                         <div>
                                             <h3 className="text-sm text-gray-700">
-                                                <a href="#">
+                                                <Link href={`/properties/${property.id}`} key={property.id}>
                                                     <span aria-hidden="true" className="absolute inset-0"></span>
                                                     {property.city}
-                                                </a>
+                                                </Link>
                                             </h3>
-                                            <p className="mt-1 text-sm text-gray-500">{property.country}</p>
+                                            
+                                                 <p className="mt-1 text-sm text-gray-500">{property.country}</p>
+                                           
+                                           
                                         </div>
                                         <p className="text-sm font-medium text-gray-900">${property.cost_per_night}</p>
                                     </div>
