@@ -1,8 +1,7 @@
-
-
-import Link from 'next/link';
+'use client'
 import { Card, CardContent, CardHeader } from '../ui/card';
-
+import { Button } from '@/components/ui/button';
+import { useRouter } from 'next/navigation';
 interface PropertyProps {
     id: string
     name: string
@@ -14,13 +13,19 @@ interface PropertyProps {
 
 
 export const PropertyList = ({ properties }: { properties: PropertyProps[] }) => {
-
+    const router = useRouter();
+    const handleNewProperty = () => {
+        router.push('/property'); 
+    }
     return (
         <Card className='w-[800px] shadow-md'>
             <CardHeader>
                 <p className="text-2xl font-semibold text-center">
                     Properties
                 </p>
+                <Button onClick={handleNewProperty} className="bg-blue-500 text-white px-4 py-2 rounded">
+                    New Property
+                </Button>
             </CardHeader>
             <CardContent className='space-y-4'>
                 {/* <div className="bg-white"> */}
