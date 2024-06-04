@@ -25,3 +25,20 @@ export const RegisterSchema = z.object({
         message: 'Name is required'
     })
 })
+
+export const PropertySchema = z.object({
+  id: z.string().uuid(),
+  type: z.string(),
+  country: z.string(),
+  city: z.string(),
+  address: z.string(),
+  latitude: z.number(),
+  altitude: z.number(),
+  rooms: z.number().positive(),
+  bathrooms: z.number().positive(),
+  area: z.number().positive(),
+  cost_per_night: z.number().positive(),
+  max_people: z.number().positive(),
+  slug: z.string().optional(),
+});
+

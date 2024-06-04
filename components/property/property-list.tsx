@@ -2,6 +2,7 @@
 import { Card, CardContent, CardHeader } from '../ui/card';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
+import { PropertyForm } from './property-form';
 interface PropertyProps {
     id: string
     name: string
@@ -55,7 +56,10 @@ export const PropertyList = ({ properties }: { properties: PropertyProps[] }) =>
                 {/* </div> */}
             {/* </div> */}
             </CardContent>
+               
+                   
         </Card>
+        
         
     )
 

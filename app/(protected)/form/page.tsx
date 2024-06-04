@@ -2,18 +2,19 @@ import { getProperties } from "@/actions/get-properties";
 import { useCurrentToken } from "@/lib/auth";
 
 import { PropertyList } from "@/components/property/property-list";
+import { PropertyForm } from "@/components/property/property-form";
 
 
-const PropertiesListPage = async () =>{
+const PropertyFormC = async () =>{
     const token = await useCurrentToken();
     const properties = await getProperties(token as string); ;
     return (
-           
-            <PropertyList properties={properties}/>
+            
+            <PropertyForm/>
             
             
     )
 
 }
 
-export default PropertiesListPage;
+export default PropertyFormC;
