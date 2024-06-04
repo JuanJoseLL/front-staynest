@@ -26,7 +26,6 @@ export const BookingList = ({ bookings }: { bookings: Booking[] }) => {
                 Bookings
             </p>
 
-            <Link href='/bookings/create-booking'>Create booking</Link>
         </CardHeader>
             <CardContent className='space-y-4'>
                 <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 max-h-[400px] mx-auto overflow-auto">
