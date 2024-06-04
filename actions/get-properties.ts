@@ -6,6 +6,7 @@ interface Property{
     cost_per_night: number;
     city: string;
     country: string;
+    image: string
 }
 
 
