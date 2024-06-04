@@ -1,29 +1,35 @@
-import axios from 'axios';
 
-interface Booking {
+import axios from 'axios';
+import { currentUser } from "@/lib/auth";
+ interface Booking { 
     id: string;
-    user_id: string;
-    roomId: string;
     check_in: string;
     check_out: string;
-    guests: number;
-    price: number;
-
+    property_id: string;
+    user_id: string;
+    num_people: number;
+    payment_method: string;
+    is_paid: boolean;
+    is_confirmed: boolean;
 }
-export const getBookings= async (token: string, userId: string) => {
+interface User {
+    id: string;
+    name: string;
+    email: string;
+    role: string;
+}
+export const getBookings = async (token: string) => {
+    const user:User|undefined = await currentUser();
     try {
-        const response = await axios.get('http://localhost:3001/booking',{
+        const response = await axios.get(`https://staynest.icybeach-62331649.eastus.azurecontainerapps.io/booking/${user?.id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
-        
-        }); 
-        const bookings: Booking[] = response.data
-        const userBookings = bookings.filter(booking => booking.user_id === userId);
-
-        return userBookings
-      } catch (error) {
-        console.error("Error fetching properties:", error);
-        return []
-      }
+        });
+        const bookings: Booking[] = response.data;
+        return bookings;
+    } catch (error) {
+        console.error("Error fetching bookings:", error);
+        return [];
+    }
 }
