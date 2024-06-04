@@ -6,7 +6,7 @@ import { Button } from '../ui/button';
 import { FormError } from '../form-error';
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { BookingSchema } from '../../schemas/BookingSchema';
+import { BookingSchema } from '../../schemas/index';
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";

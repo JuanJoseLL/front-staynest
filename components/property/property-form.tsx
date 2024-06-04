@@ -21,7 +21,7 @@ import {
     FormMessage
 } from "@/components/ui/form";
 import { createBooking } from '@/actions/create-booking';
-import { createProperty } from '@/actions/property';
+import { createProperty } from '../../actions/property';
 import { Card, CardContent } from '../ui/card';
 
 export const PropertyForm = () => {
