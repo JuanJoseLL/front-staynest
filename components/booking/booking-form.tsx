@@ -18,7 +18,7 @@ import {
     FormLabel,
     FormMessage
 } from "@/components/ui/form"
-import { createBooking } from '@/actions/booking';
+import { createBooking } from '@/actions/create-booking';
 
 export const BookingForm = () => {
 
