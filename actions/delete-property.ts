@@ -4,7 +4,7 @@ import { useCurrentToken } from '@/hooks/use-current-token';
 export async function deleteProperty(id: any, token: any) {
     
     try {
-        const response = await axios.delete(`http://localhost:3001/property/${id}`, {
+        const response = await axios.delete(`${process.env.BASE_URL}/property/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

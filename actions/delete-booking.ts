@@ -4,7 +4,7 @@ import { useCurrentToken } from '@/hooks/use-current-token';
 export async function deleteBooking(id: any, token: any) {
     
     try {
-        const response = await axios.delete(`http://localhost:3001/booking/${id}`, {
+        const response = await axios.delete(`${process.env.BASE_URL}/booking/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

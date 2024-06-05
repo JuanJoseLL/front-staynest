@@ -4,7 +4,7 @@ import axios from 'axios';
 export const getUserById = async (id:string, token: string) => {
     
     try {
-        const response = await axios.get(`https://staynest.icybeach-62331649.eastus.azurecontainerapps.io/user/${id}`, {
+        const response = await axios.get(`${process.env.BASE_URL}/user/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

@@ -15,7 +15,7 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
    try {
         const timeStamp = Date.now().toString(); // Declare the timeStamp variable
 
-        const response = await axios.post('https://staynest.icybeach-62331649.eastus.azurecontainerapps.io/user/register',{
+        const response = await axios.post(`${process.env.BASE_URL}/user/register`,{
             email,
             password,
             name,

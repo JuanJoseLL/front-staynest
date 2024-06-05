@@ -12,7 +12,7 @@ interface Booking {
 }
 export const getBookings= async (token: string, userId: string) => {
     try {
-        const response = await axios.get('http://localhost:3001/booking',{
+        const response = await axios.get(`${process.env.BASE_URL}/booking`,{
             headers: {
                 Authorization: `Bearer ${token}`
             }

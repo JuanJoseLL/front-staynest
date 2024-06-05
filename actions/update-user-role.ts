@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const updateUserRole = async (user: User, newRole: string, token: string) => {
     try {
-        const response = await axios.patch(`https://staynest.icybeach-62331649.eastus.azurecontainerapps.io/user/${user.id}`, {
+        const response = await axios.patch(`${process.env.BASE_URL}/user/${user.id}`, {
             ...user,
             role: newRole
         });

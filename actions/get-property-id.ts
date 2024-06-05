@@ -4,7 +4,7 @@ import axios from 'axios';
 export const getPropertyById = async (id:string, token: string) => {
     
     try {
-        const response = await axios.get(`http://localhost:3001/property/${id}`, {
+        const response = await axios.get(`${process.env.BASE_URL}/property/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
