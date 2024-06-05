@@ -16,7 +16,7 @@ export async function createProperty(formData: any, token: any) {
     console.log("Creando property con datos:", transformedData);
 
     try {
-        const response = await axios.post(`${process.env.BASE_URL}/property`,
+        const response = await axios.post(`https://staynest.icybeach-62331649.eastus.azurecontainerapps.io/property`,
             transformedData, {
             headers: {
                 Authorization: `Bearer ${token}` // Incluir el token JWT en el encabezado de autorización

@@ -11,7 +11,7 @@ interface Property{
 }
 export const getMyProperties= async (token: string, userId: string) => {
     try {
-        const response = await axios.get(`${process.env.BASE_URL}/property`,{
+        const response = await axios.get(`https://staynest.icybeach-62331649.eastus.azurecontainerapps.io/property`,{
             headers: {
                 Authorization: `Bearer ${token}`
             }

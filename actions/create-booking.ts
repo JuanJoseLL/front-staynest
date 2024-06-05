@@ -18,7 +18,7 @@ export async function createBooking(formData: any, token: any) {
     console.log("Creando booking con datos:", transformedData);
 
     try {
-        const response = await axios.post(`${process.env.BASE_URL}/booking`,
+        const response = await axios.post(`https://staynest.icybeach-62331649.eastus.azurecontainerapps.io/booking`,
             transformedData, {
             headers: {
                 Authorization: `Bearer ${token}` // Incluir el token JWT en el encabezado de autorización

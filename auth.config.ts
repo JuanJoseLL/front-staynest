@@ -25,7 +25,7 @@ export default {
                     const { email, password } = validatedValues.data;
 
                     try {
-                        const response = await axios.post(`${process.env.BASE_URL}/auth/login`, {
+                        const response = await axios.post(`https://staynest.icybeach-62331649.eastus.azurecontainerapps.io/auth/login`, {
                             email,
                             password
                         })

@@ -4,7 +4,7 @@ import { useCurrentToken } from '@/hooks/use-current-token';
 export async function deleteProperty(id: any, token: any) {
     
     try {
-        const response = await axios.delete(`${process.env.BASE_URL}/property/${id}`, {
+        const response = await axios.delete(`https://staynest.icybeach-62331649.eastus.azurecontainerapps.io/property/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
