@@ -44,14 +44,22 @@ export const UserButton = () => {
                             </Link>
                     </DropdownMenuItem>
                 </NavRoleGate>
-                <NavRoleGate allowedRole='ADMIN'>
+                
                     <DropdownMenuItem>
-                            <Link href="/analytics" className='flex items-center'>
+                            <Link href="/properties/myProperties" className='flex items-center'>
                                 <InfoCircledIcon className='h-4 w-4 mr-2'/>
                                 My Properties
                             </Link>
                     </DropdownMenuItem>
-                </NavRoleGate>
+                
+               
+                    <DropdownMenuItem>
+                            <Link href="/myBookings" className='flex items-center'>
+                                <InfoCircledIcon className='h-4 w-4 mr-2'/>
+                                My Bookings
+                            </Link>
+                    </DropdownMenuItem>
+                
                 
                 <LogoutButton>
                     <DropdownMenuItem>

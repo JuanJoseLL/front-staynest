@@ -37,20 +37,20 @@ export const Navbar = () => {
          items-center rounded-xl p-4 w-[1000px] shadow-sm mt-0 absolute top-10">
             <div className="flex gap-x-2">
                 
-                <Button
+                {/* <Button
                  asChild
                  variant={pathname === "/admin" ? "default" : "outline"}
                 >
                     <Link href="/admin">Admin</Link>
 
-                </Button>
-                <Button
+                </Button> */}
+                {/* <Button
                  asChild
                  variant={pathname === "/settings" ? "default" : "outline"}
                 >
                     <Link href="/settings">Settings</Link>
 
-                </Button>
+                </Button> */}
                
                 <Button
                  asChild
@@ -59,12 +59,6 @@ export const Navbar = () => {
                     <Link href="/properties">Properties</Link>
 
                 </Button>
-                        
-                    
-                
-               
-            </div>
-            <div className="flex items-center gap-x-2">
                 <NavRoleGate allowedRole="ADMIN">
                         <Button
                             asChild
@@ -74,6 +68,12 @@ export const Navbar = () => {
             
                         </Button>
                 </NavRoleGate>
+                    
+                
+               
+            </div>
+            <div className="flex items-center gap-x-2">
+                
                 <UserButton/>
             </div>
             
