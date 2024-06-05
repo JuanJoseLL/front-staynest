@@ -17,7 +17,7 @@ export default function Home() {
         muted
         className="absolute w-full h-full object-cover"
       >
-        <source src="/video/187270-880045728.mp4" type="video/mp4" />
+        <source src="/video/5510387-hd_1920_1080_30fps.mp4" type="video/mp4" />
       </video>
       <div className="relative z-10 space-y-6 text-center">
         <h1
