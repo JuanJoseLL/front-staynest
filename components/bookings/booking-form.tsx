@@ -65,7 +65,7 @@ export const BookingForm = ({property} : PropertyInfoProps) => {
         }
     })
 
-    const onSubmit = (values: any) => {
+    const onSubmit = (values: z.infer<typeof BookingSchema>) => {
         console.log('Form submitted with values:', values);
         setError('')
         setSuccess('')
@@ -99,7 +99,16 @@ export const BookingForm = ({property} : PropertyInfoProps) => {
             showSocial
         >
             <Form {...form} >
-                <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
+            <form onSubmit={(event) => {
+                event.preventDefault(); // Prevenir el comportamiento de envío predeterminado
+                const formElement = event.target as HTMLFormElement; // Comprobación de tipo
+                const formData = new FormData(formElement);
+                const values: any = {};
+                formData.forEach((value, key) => {
+                    values[key] = value;
+                });
+                onSubmit(values);
+            }} className='space-y-6'>
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                         <FormField
                             control={form.control}
