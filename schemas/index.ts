@@ -26,23 +26,6 @@ export const RegisterSchema = z.object({
     })
 })
 
-export const PropertySchema = z.object({
-  id: z.string().uuid(),
-  type: z.string(),
-  country: z.string(),
-  city: z.string(),
-  address: z.string(),
-  latitude: z.number(),
-  altitude: z.number(),
-  rooms: z.number().positive(),
-  bathrooms: z.number().positive(),
-  area: z.number().positive(),
-  cost_per_night: z.number().positive(),
-  max_people: z.number().positive(),
-  slug: z.string().optional(),
-});
-
-
 export const BookingSchema = z.object({
     check_in: z.string().min(1, 'Check-in date is required'),
     check_out: z.string().min(1,'Check-out date is required'),
@@ -54,8 +37,6 @@ export const BookingSchema = z.object({
     is_paid: z.boolean().optional(),
     is_confirmed: z.boolean().optional(),
 });
-<<<<<<< HEAD
-=======
 export const PropertySchema = z.object({
   id: z.string().uuid(),
   type: z.string(),
@@ -71,4 +52,3 @@ export const PropertySchema = z.object({
   max_people: z.number().positive(),
   slug: z.string().optional(),
 });
->>>>>>> 68f1466 (3)
