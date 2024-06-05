@@ -1,6 +1,6 @@
 'use client'
 import * as z from 'zod';
-import { useState, useTransition } from 'react';
+import { use, useState, useTransition } from 'react';
 import { CardWrapper } from "@/components/auth/card-wrapper"
 import { Button } from '@/components/ui/button';
 import { FormError } from '@/components/form-error';
@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/form"
 import { createBooking } from '@/actions/create-booking';
 import { useCurrentUser } from '@/hooks/use-current-user';
-
+import { useCurrentToken } from '@/hooks/use-current-token';
 
 
 interface Property {
@@ -46,6 +46,7 @@ interface PropertyInfoProps {
 }
 
 export const BookingForm = ({property} : PropertyInfoProps) => {
+    const token = useCurrentToken();
     const user = useCurrentUser()
     const [error, setError] = useState<string | undefined>('')
     const [success, setSuccess] = useState<string | undefined>('')
@@ -83,7 +84,7 @@ export const BookingForm = ({property} : PropertyInfoProps) => {
        
         startTransition(() => {
             
-            createBooking(completeValues)
+            createBooking(completeValues, token)
                 .then((data: any) => {
                     setError(data.error)
                     setSuccess(data.success)
