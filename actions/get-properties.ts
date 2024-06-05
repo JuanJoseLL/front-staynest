@@ -12,7 +12,7 @@ interface Property{
 
 export const getProperties= async (token: string) => {
     try {
-        const response = await axios.get('https://staynest.icybeach-62331649.eastus.azurecontainerapps.io/property',{
+        const response = await axios.get('http://localhost:3001/property',{
             headers: {
                 Authorization: `Bearer ${token}`
             }
