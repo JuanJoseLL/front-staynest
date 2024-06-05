@@ -37,3 +37,18 @@ export const BookingSchema = z.object({
     is_paid: z.boolean().optional(),
     is_confirmed: z.boolean().optional(),
 });
+
+export const PropertySchema = z.object({
+    type: z.string().min(1, 'Type is required'),
+    country: z.string().min(1,'Country is required'),
+    city: z.string().min(1,'City is required'),
+    address: z.string().min(1,'Address is required'),
+    latitude: z.number().min(1,'Latitude is required'),
+    altitude: z.number().min(1,'Altitude is required'),
+    rooms: z.number().min(1,'Rooms is required'),
+    bathrooms: z.number().min(1,'Bathrooms is required'),
+    area: z.number().min(1,'Area is required'),
+    cost_per_night: z.number().min(1,'Cost per night is required'),
+    max_people: z.number().min(1,'Cost per night is required'),
+    slug: z.string().optional(),
+});
