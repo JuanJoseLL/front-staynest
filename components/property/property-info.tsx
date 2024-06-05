@@ -1,5 +1,7 @@
+'use client';
 import Link from "next/link";
 import { Card, CardContent } from "../ui/card";
+import { useState } from 'react';
 
 interface Property {
     id: string;
@@ -24,14 +26,19 @@ interface PropertyInfoProps {
 }
 
 export const PropertyInfo = ( {property} : PropertyInfoProps) => {
+    const [isImageModalOpen, setIsImageModalOpen] = useState(false);
 
+    const handleImageClick = () => {
+        setIsImageModalOpen(!isImageModalOpen);
+    };
     return (
+        <>
         <Card className="w-[600px] shadow-md">
             <CardContent className="space-y-2">
                 <div className="bg-white">
                     <div className="pt-4">
                         <div className="mx-auto max-w-xs sm:px-4 lg:grid lg:max-w-md lg:grid-cols-3 lg:gap-x-4 lg:px-4">
-                            <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
+                        <div className="overflow-hidden rounded-lg lg:block cursor-pointer" onClick={handleImageClick}>
                                 <img src={property?.image} alt="Property image" className="h-full w-full object-cover object-center"/>
                             </div>
                         </div>
@@ -83,5 +90,11 @@ export const PropertyInfo = ( {property} : PropertyInfoProps) => {
                 </div>
             </CardContent>
         </Card>
+        {isImageModalOpen && (
+                <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-75" onClick={handleImageClick}>
+                    <img src={property?.image} alt="Property image" className="max-w-3xl max-h-3xl"/>
+                </div>
+            )}
+        </>
     )
 }

@@ -66,14 +66,15 @@ export const PropertyList = ({ properties }: { properties: PropertyProps[] }) =>
   };
 
   return (
-    <Card className="w-[1000px] shadow-md mx-auto mt-8">
+    <Card className="w-[1000px] shadow-md mx-auto mt-20"> 
+
       <CardHeader>
         <p className="text-2xl font-semibold text-center">Properties</p>
         <Link href={`/propertyForm/`}>
-                    <button type="submit" className="p-2 rounded bg-blue-500 text-white hover:bg-blue-700">
-                                            +
-                    </button>
-                </Link>
+          <button type="submit" className="p-2 rounded bg-blue-500 text-white hover:bg-blue-700">
+            +
+          </button>
+        </Link>
       </CardHeader>
       <CardContent className="flex flex-col items-center space-y-4">
         <div className="relative w-full">
