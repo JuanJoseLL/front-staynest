@@ -29,7 +29,7 @@ export const RegisterSchema = z.object({
 export const BookingSchema = z.object({
     check_in: z.string().min(1, 'Check-in date is required'),
     check_out: z.string().min(1,'Check-out date is required'),
-    property_type: z.enum(['APARTMENT', 'HOUSE', 'VILLA']),
+    property_type: z.enum(['APARTMENT', 'HOUSE', 'CHALET', '']),
     property_id: z.string().min(1,'Property ID is required'),
     user_id: z.string().min(1,'User ID is required'),
     num_people: z.number().min(1, 'Number of people must be at least 1'),

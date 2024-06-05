@@ -54,7 +54,7 @@ export const BookingForm = ({property} : PropertyInfoProps) => {
         defaultValues: {
             check_in: '',
             check_out: '',
-            property_type: property?.type as "APARTMENT" | "HOUSE" | "VILLA" | undefined ,
+            property_type: property?.type as "APARTMENT" | "HOUSE" | "CHALET" | '' ,
             property_id: property?.id as string | undefined,
             user_id: user?.id,
             num_people: 2,
@@ -73,7 +73,7 @@ export const BookingForm = ({property} : PropertyInfoProps) => {
             ...values,
             property_id: property?.id,
             user_id: user?.id,
-            property_type: property?.type as "APARTMENT" | "HOUSE" | "VILLA" | undefined ,
+            property_type: property?.type as "APARTMENT" | "HOUSE" | "CHALET" | '' ,
             is_paid: true,
             is_confirmed: true
 
