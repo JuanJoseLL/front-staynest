@@ -8,8 +8,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { BookingSchema } from '@/schemas/index';
 import { Input } from "@/components/ui/input";
-
-import { Checkbox } from "@/components/ui/checkbox";
 import {
     Form,
     FormControl,
